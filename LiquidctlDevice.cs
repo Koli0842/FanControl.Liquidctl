@@ -235,9 +235,9 @@ namespace FanControl.Liquidctl
                 LiquidctlStatusJSON output = LiquidctlCLIWrapper.ReadStatus(address).First();
                 UpdateFromJSON(output);
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException e)
             {
-                throw new Exception($"Device {address} not showing up");
+                logger.Log($"Device {address} not showing up: {e.Message}");
             }
         }
 
